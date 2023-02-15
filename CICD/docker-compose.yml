@@ -1,0 +1,25 @@
+name: "CI/CD"
+
+networks:
+    cicd-net:
+        driver: bridge
+
+services:
+    jenkins:
+        image: jenkins/jenkins:lts
+        container_name: jenkins
+        volumes:
+            - ~/jenkins:/var/jenkins_home
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/local/bin/docker:/usr/local/bin/docker
+        restart: unless-stopped
+        ports:
+            - 8080:8080
+        networks:
+            - monitor-net
+        labels:
+            org.label-schema.group: "CI/CD"
+
+secrets:
+    jenkins_password:
+        file: ./secrets/jenkins_password.txt
