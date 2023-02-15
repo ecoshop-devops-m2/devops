@@ -14,12 +14,8 @@ services:
             - /usr/local/bin/docker:/usr/local/bin/docker
         restart: unless-stopped
         ports:
-            - 8080:8080
+            - 9000:8080
         networks:
-            - monitor-net
+            - cicd-net
         labels:
             org.label-schema.group: "CI/CD"
-
-secrets:
-    jenkins_password:
-        file: ./secrets/jenkins_password.txt
