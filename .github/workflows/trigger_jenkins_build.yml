@@ -1,4 +1,4 @@
-name: trigger jenkins job
+name: trigger jenkins build
 on:
   pull_request:
       branches:
